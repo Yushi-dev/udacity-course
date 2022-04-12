@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:task_02_category_widget/category.dart';
 
 // TODO: Pass this information into your custom [Category] widget
+// test comment
 const _categoryName = 'Cake';
 const _categoryIcon = Icons.cake;
 const _categoryColor = Colors.green;
