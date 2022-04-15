@@ -7,8 +7,10 @@
 import 'package:flutter/material.dart';
 
 // TODO: Check if we need to import anything
+import 'package:task_03_category_route/category.dart';
 
 // TODO: Define any constants
+final _backgroundColor = Colors.green[100];
 
 /// Category Route (screen).
 ///
