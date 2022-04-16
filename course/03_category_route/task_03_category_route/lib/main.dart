@@ -24,7 +24,7 @@ class UnitConverterApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'My Favorite',
+      title: 'My Components',
       // TODO: Instead of pointing to exactly 1 Category widget,
       // our home should now point to an instance of the CategoryRoute widget.
       home: CategoryRoute(),

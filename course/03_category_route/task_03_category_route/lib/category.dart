@@ -54,7 +54,7 @@ class Category extends StatelessWidget {
           // We can use either the () => function() or the () { function(); }
           // syntax.
           onTap: () {
-            print('I was tapped!');
+            // print('I was tapped!');
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
