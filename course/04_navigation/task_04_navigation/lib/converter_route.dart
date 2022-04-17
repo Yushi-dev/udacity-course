@@ -13,12 +13,16 @@ import 'package:task_04_navigation/unit.dart';
 /// While it is named ConverterRoute, a more apt name would be ConverterScreen,
 /// because it is responsible for the UI at the route's destination.
 class ConverterRoute extends StatelessWidget {
+  /// Color for this [Category].
+  final Color color;
+
   /// Units for this [Category].
   final List<Unit> units;
 
   /// This [ConverterRoute] requires the color and units to not be null.
   // TODO: Pass in the [Category]'s color
   const ConverterRoute({
+    required this.color,
     required this.units,
     Key? key,
   }) : super(key: key);
@@ -29,6 +33,7 @@ class ConverterRoute extends StatelessWidget {
     final unitWidgets = units.map((Unit unit) {
       // TODO: Set the color for this Container
       return Container(
+        color: color,
         margin: const EdgeInsets.all(8.0),
         padding: const EdgeInsets.all(16.0),
         child: Column(
