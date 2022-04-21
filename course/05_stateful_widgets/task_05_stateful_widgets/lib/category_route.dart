@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:task_05_stateful_widgets/category.dart';
 import 'package:task_05_stateful_widgets/unit.dart';
 
-final _backgroundColor = Colors.green[100];
+final _backgroundColor = Color(0xFFFFFF);
 
 /// Category Route (screen).
 ///
