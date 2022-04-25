@@ -1,0 +1,79 @@
+@startuml
+set namespaceSeparator ::
+
+class "task_06_input::unit.dart::Unit" {
+  +String? name
+  +double? conversion
+}
+
+class "task_06_input::converter_route.dart::ConverterRoute" {
+  +Color color
+  +List<Unit> units
+  +_ConverterRouteState createState()
+}
+
+"task_06_input::converter_route.dart::ConverterRoute" o-- "dart::ui::Color"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "task_06_input::converter_route.dart::ConverterRoute"
+
+class "task_06_input::converter_route.dart::_ConverterRouteState" {
+  -Unit? _fromValue
+  -Unit? _toValue
+  -double? _inputValue
+  -String _convertedValue
+  -List<DropdownMenuItem<dynamic>>? _unitMenuItems
+  -bool _showValidationError
+  +void initState()
+  -void _createDropdownMenuItems()
+  -void _setDefaults()
+  -String _format()
+  -void _updateConversion()
+  -void _updateInputValue()
+  -Unit? _getUnit()
+  -void _updateFromConversion()
+  -void _updateToConversion()
+  -Widget _createDropdown()
+  +Widget build()
+}
+
+"task_06_input::converter_route.dart::_ConverterRouteState" o-- "task_06_input::unit.dart::Unit"
+"flutter::src::widgets::framework.dart::State" <|-- "task_06_input::converter_route.dart::_ConverterRouteState"
+
+class "task_06_input::category_route.dart::CategoryRoute" {
+  +_CategoryRouteState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "task_06_input::category_route.dart::CategoryRoute"
+
+class "task_06_input::category_route.dart::_CategoryRouteState" {
+  -List<Category> _categories
+  {static} -List<String> _categoryNames
+  {static} -List<ColorSwatch<dynamic>> _baseColors
+  +void initState()
+  -Widget _buildCategoryWidgets()
+  -List<Unit> _retrieveUnitList()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "task_06_input::category_route.dart::_CategoryRouteState"
+
+class "task_06_input::category.dart::Category" {
+  +String name
+  +ColorSwatch<dynamic> color
+  +IconData iconLocation
+  +List<Unit> units
+  -void _navigateToConverter()
+  +Widget build()
+}
+
+"task_06_input::category.dart::Category" o-- "flutter::src::painting::colors.dart::ColorSwatch<dynamic>"
+"task_06_input::category.dart::Category" o-- "flutter::src::widgets::icon_data.dart::IconData"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "task_06_input::category.dart::Category"
+
+class "task_06_input::main.dart::UnitConverterApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "task_06_input::main.dart::UnitConverterApp"
+
+
+@enduml
