@@ -271,6 +271,7 @@ class _BackdropState extends State<Backdrop>
       body: LayoutBuilder(
         builder: _buildStack,
       ),
+      resizeToAvoidBottomInset: false,
     );
   }
 }
