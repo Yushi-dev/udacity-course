@@ -1,0 +1,147 @@
+@startuml
+set namespaceSeparator ::
+
+class "task_07_backdrop::unit.dart::Unit" {
+  +String? name
+  +double? conversion
+}
+
+class "task_07_backdrop::category_route.dart::CategoryRoute" {
+  +_CategoryRouteState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "task_07_backdrop::category_route.dart::CategoryRoute"
+
+class "task_07_backdrop::category_route.dart::_CategoryRouteState" {
+  -Category? _defaultCategory
+  -Category? _currentCategory
+  -List<Category> _categories
+  {static} -List<String> _categoryNames
+  {static} -List<ColorSwatch<dynamic>> _baseColors
+  +void initState()
+  -void _onCategoryTap()
+  -Widget _buildCategoryWidgets()
+  -List<Unit> _retrieveUnitList()
+  +Widget build()
+}
+
+"task_07_backdrop::category_route.dart::_CategoryRouteState" o-- "task_07_backdrop::category.dart::Category"
+"flutter::src::widgets::framework.dart::State" <|-- "task_07_backdrop::category_route.dart::_CategoryRouteState"
+
+class "task_07_backdrop::category.dart::Category" {
+  +String name
+  +ColorSwatch<dynamic> color
+  +List<Unit> units
+  +IconData iconLocation
+}
+
+"task_07_backdrop::category.dart::Category" o-- "flutter::src::painting::colors.dart::ColorSwatch<dynamic>"
+"task_07_backdrop::category.dart::Category" o-- "flutter::src::widgets::icon_data.dart::IconData"
+
+class "task_07_backdrop::main.dart::UnitConverterApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "task_07_backdrop::main.dart::UnitConverterApp"
+
+class "task_07_backdrop::backdrop.dart::_BackdropPanel" {
+  +void Function()? onTap
+  +void Function(DragUpdateDetails)? onVerticalDragUpdate
+  +void Function(DragEndDetails)? onVerticalDragEnd
+  +Widget? title
+  +Widget? child
+  +Widget build()
+}
+
+"task_07_backdrop::backdrop.dart::_BackdropPanel" o-- "dart::ui::void Function()"
+"task_07_backdrop::backdrop.dart::_BackdropPanel" o-- "flutter::src::gestures::drag_details.dart::void Function(DragUpdateDetails)"
+"task_07_backdrop::backdrop.dart::_BackdropPanel" o-- "flutter::src::gestures::monodrag.dart::void Function(DragEndDetails)"
+"task_07_backdrop::backdrop.dart::_BackdropPanel" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "task_07_backdrop::backdrop.dart::_BackdropPanel"
+
+class "task_07_backdrop::backdrop.dart::_BackdropTitle" {
+  +Widget? frontTitle
+  +Widget? backTitle
+  +Widget build()
+}
+
+"task_07_backdrop::backdrop.dart::_BackdropTitle" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::transitions.dart::AnimatedWidget" <|-- "task_07_backdrop::backdrop.dart::_BackdropTitle"
+
+class "task_07_backdrop::backdrop.dart::Backdrop" {
+  +Category currentCategory
+  +Widget frontPanel
+  +Widget backPanel
+  +Widget frontTitle
+  +Widget backTitle
+  +_BackdropState createState()
+}
+
+"task_07_backdrop::backdrop.dart::Backdrop" o-- "task_07_backdrop::category.dart::Category"
+"task_07_backdrop::backdrop.dart::Backdrop" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "task_07_backdrop::backdrop.dart::Backdrop"
+
+class "task_07_backdrop::backdrop.dart::_BackdropState" {
+  -GlobalKey<State<StatefulWidget>> _backdropKey
+  -AnimationController _controller
+  -bool _backdropPanelVisible
+  -double _backdropHeight
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _toggleBackdropPanelVisibility()
+  -void _handleDragUpdate()
+  -void _handleDragEnd()
+  -Widget _buildStack()
+  +Widget build()
+}
+
+"task_07_backdrop::backdrop.dart::_BackdropState" o-- "flutter::src::widgets::framework.dart::GlobalKey<State<StatefulWidget>>"
+"task_07_backdrop::backdrop.dart::_BackdropState" o-- "flutter::src::animation::animation_controller.dart::AnimationController"
+"flutter::src::widgets::framework.dart::State" <|-- "task_07_backdrop::backdrop.dart::_BackdropState"
+"flutter::src::widgets::ticker_provider.dart::SingleTickerProviderStateMixin" <|-- "task_07_backdrop::backdrop.dart::_BackdropState"
+
+class "task_07_backdrop::unit_converter.dart::UnitConverter" {
+  +Category category
+  +_UnitConverterState createState()
+}
+
+"task_07_backdrop::unit_converter.dart::UnitConverter" o-- "task_07_backdrop::category.dart::Category"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "task_07_backdrop::unit_converter.dart::UnitConverter"
+
+class "task_07_backdrop::unit_converter.dart::_UnitConverterState" {
+  -Unit? _fromValue
+  -Unit? _toValue
+  -double? _inputValue
+  -String _convertedValue
+  -List<DropdownMenuItem<dynamic>>? _unitMenuItems
+  -bool _showValidationError
+  +void initState()
+  +void didUpdateWidget()
+  -void _createDropdownMenuItems()
+  -void _setDefaults()
+  -String _format()
+  -void _updateConversion()
+  -void _updateInputValue()
+  -Unit? _getUnit()
+  -void _updateFromConversion()
+  -void _updateToConversion()
+  -Widget _createDropdown()
+  +Widget build()
+}
+
+"task_07_backdrop::unit_converter.dart::_UnitConverterState" o-- "task_07_backdrop::unit.dart::Unit"
+"flutter::src::widgets::framework.dart::State" <|-- "task_07_backdrop::unit_converter.dart::_UnitConverterState"
+
+class "task_07_backdrop::category_tile.dart::CategoryTile" {
+  +Category category
+  +void Function(Category) onTap
+  +Widget build()
+}
+
+"task_07_backdrop::category_tile.dart::CategoryTile" o-- "task_07_backdrop::category.dart::Category"
+"task_07_backdrop::category_tile.dart::CategoryTile" o-- "flutter::src::foundation::basic_types.dart::void Function(Category)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "task_07_backdrop::category_tile.dart::CategoryTile"
+
+
+@enduml
