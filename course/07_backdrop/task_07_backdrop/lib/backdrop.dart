@@ -81,7 +81,7 @@ class _BackdropTitle extends AnimatedWidget {
     return DefaultTextStyle(
       style: Theme.of(context).primaryTextTheme.headline6!,
       softWrap: false,
-      overflow: TextOverflow.ellipsis,
+      // overflow: TextOverflow.fade,
       // Here, we do a custom cross fade between backTitle and frontTitle.
       // This makes a smooth animation between the two texts.
       child: Stack(
